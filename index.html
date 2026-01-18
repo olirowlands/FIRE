@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio Investment Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Personal finance dashboard</p>
+          <h1>Portfolio Investment Tracker</h1>
+          <p class="subtitle">
+            Track holdings, monitor market value, and visualize allocation in one
+            place.
+          </p>
+        </div>
+        <div class="summary">
+          <div>
+            <span class="label">Total value</span>
+            <strong id="totalValue">$0.00</strong>
+          </div>
+          <div>
+            <span class="label">Total cost</span>
+            <strong id="totalCost">$0.00</strong>
+          </div>
+          <div>
+            <span class="label">Gain / Loss</span>
+            <strong id="totalGain" class="neutral">$0.00</strong>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="card">
+          <h2>Add new holding</h2>
+          <form id="holdingForm" class="grid">
+            <label>
+              Asset name
+              <input type="text" name="name" placeholder="Apple Inc." required />
+            </label>
+            <label>
+              Ticker
+              <input type="text" name="ticker" placeholder="AAPL" required />
+            </label>
+            <label>
+              Asset class
+              <select name="category" required>
+                <option value="">Select</option>
+                <option>Equity</option>
+                <option>ETF</option>
+                <option>Crypto</option>
+                <option>Bond</option>
+                <option>Cash</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              Shares / Units
+              <input type="number" name="shares" min="0" step="0.0001" required />
+            </label>
+            <label>
+              Avg. cost ($)
+              <input type="number" name="cost" min="0" step="0.01" required />
+            </label>
+            <label>
+              Current price ($)
+              <input type="number" name="price" min="0" step="0.01" required />
+            </label>
+            <label>
+              Notes
+              <input type="text" name="notes" placeholder="Long-term" />
+            </label>
+            <button type="submit">Add holding</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="table-header">
+            <h2>Holdings overview</h2>
+            <div class="table-actions">
+              <button id="clearAll" class="ghost" type="button">Clear all</button>
+              <button id="seedData" class="ghost" type="button">Load sample data</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Category</th>
+                  <th>Shares</th>
+                  <th>Cost basis</th>
+                  <th>Market value</th>
+                  <th>Gain / Loss</th>
+                  <th>Notes</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="holdingsBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card allocation">
+          <h2>Allocation snapshot</h2>
+          <div id="allocationGrid" class="allocation-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="allocationCardTemplate">
+      <div class="allocation-card">
+        <div class="allocation-meta">
+          <span class="allocation-label"></span>
+          <span class="allocation-value"></span>
+        </div>
+        <div class="allocation-bar">
+          <span></span>
+        </div>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
